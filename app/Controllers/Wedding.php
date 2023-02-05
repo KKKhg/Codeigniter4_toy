@@ -21,6 +21,10 @@ class Wedding extends BaseController {
         $cnt = $this->testModel->selectCount($condition)[0]['ip'];
         if($cnt < 1) $this->testModel->insertIp($condition);
 
+        echo 'cnt : '.$cnt;
+        echo '<br>' . date('Y-m-d H:m:s');
+
+
     }
 
 }
