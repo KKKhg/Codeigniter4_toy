@@ -16,7 +16,7 @@ services:
         build: phpdocker/php-fpm
         working_dir: /application
         volumes:
-            - '/Users/project/Wedding/ci4:/application'
+            - '/Users/project/Wedding/Codeigniter4_toy:/application'
             - './phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/8.0/fpm/conf.d/99-overrides.ini'
 
     react: 

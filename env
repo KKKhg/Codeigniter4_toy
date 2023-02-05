@@ -46,6 +46,13 @@
 # database.tests.DBPrefix =
 # database.tests.port = 3306
 
+wedding_hostname =
+wedding_database =
+wedding_username =
+wedding_password =
+wedding_port =
+
+
 #--------------------------------------------------------------------
 # CONTENT SECURITY POLICY
 #--------------------------------------------------------------------
