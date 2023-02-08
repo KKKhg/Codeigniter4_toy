@@ -53,6 +53,7 @@ writable/cache/*
 
 writable/logs/*
 !writable/logs/index.html
+.log
 
 writable/session/*
 !writable/session/index.html
