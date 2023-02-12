@@ -24,5 +24,7 @@ services:
         context: ../../WeddingInvitation
         dockerfile: Dockerfile
       working_dir: /app
+      volumes: 
+        - '../../WeddingInvitation:/app'
       ports: 
           - '3000:3000'  
