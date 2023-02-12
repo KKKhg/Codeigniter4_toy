@@ -15,13 +15,7 @@ class Home extends BaseController
 
     public function index()
     {
-        $ip = $this->request->getIPAddress();
-        $condition = array(
-            'ip' => $ip
-        );
-        $cnt = $this->testModel->selectCount($condition)[0]['ip'];
-        if($cnt < 1) $this->testModel->insertIp($condition);
-
+        $this->testModel->insertOrUpdate($this->request);
         return view('welcome_message');
     }
 }

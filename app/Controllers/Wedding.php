@@ -12,19 +12,9 @@ class Wedding extends BaseController {
         $this->testModel = new TestModel();
     }
 
-
-    public function index() {
-        $ip = $this->request->getIPAddress();
-        $condition = array(
-            'ip' => $ip
-        );
-        $cnt = $this->testModel->selectCount($condition)[0]['ip'];
-        if($cnt < 1) $this->testModel->insertIp($condition);
-
-        echo 'cnt : '.$cnt;
+    public function visitorCheck() {
+        $this->testModel->insertOrUpdate($this->request);
         echo '<br>' . date('Y-m-d H:m:s');
-
-
     }
 
 }

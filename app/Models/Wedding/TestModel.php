@@ -10,17 +10,39 @@ class TestModel extends \CodeIgniter\Model {
         $this->weddingDB = \Config\Database::connect('wedding_test');
     }
 
+    public function insertOrUpdate($request) {
+        $condition = array(
+            'ip' => $request->getIPAddress()
+        );
+        $cnt = $this->selectCount($condition);
+        if($cnt < 1) $this->insertIp($condition);
+        else $this->updateIp($condition, $cnt);
+
+    }
+
     public function selectCount($condition) {
         $query = $this->weddingDB->table('VISIT')
-            ->selectCount('ip')
+            ->select('count')
             ->where('ip', $condition['ip'])
             ->where('reg_date', date('Y-m-d'))
             ->get();
-        return $query->getResultArray();
+        return $query->getResult()[0]->count;
     }
 
     public function insertIp($condition) {
+        $condition['count'] = 1;
         $this->weddingDB->table('VISIT')
-            ->insert($condition);
+            ->set($condition)
+            ->insert();
     }
+
+    public function updateIp($condition, $cnt) {
+        $this->weddingDB->table('VISIT')
+            ->set('count', $cnt+1)
+            ->where('ip', $condition['ip'])
+            ->where('reg_date', date('Y-m-d'))
+            ->update();
+    }
+
+
 }
