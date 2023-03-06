@@ -12,7 +12,7 @@ class Wedding extends BaseController {
         $this->testModel = new TestModel();
     }
 
-    public function postVisitorCheck() {
+    public function visitorCheck() {
         $this->testModel->insertOrUpdate($this->request);
         echo '<br>' . date('Y-m-d H:m:s');
     }
