@@ -50,13 +50,17 @@ abstract class BaseController extends Controller
     {
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
-
+        log_message('error', 'in');
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
 
         header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Headers: X-API-KEY, Origin,X-Requested-With, Content-Type, Accept, Access-Control-Requested-Method, Authorization");
-        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PATCH, PUT, DELETE");
+        header("Access-Control-Allow-Headers: Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization");
+        header("Access-Control-Allow-Credentials: true");
+        header("Access-Control-Allow-Methods: *");
+        header("Content-type:text/html;charset=utf-8");
+
+
     }
 }

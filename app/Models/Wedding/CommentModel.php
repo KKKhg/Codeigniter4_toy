@@ -2,7 +2,11 @@
 
 namespace App\Models\Wedding;
 
-class CommentModel extends \CodeIgniter\Model {
+use CodeIgniter\Model;
+
+class CommentModel extends Model {
+
+    protected $DBGroup = 'wedding_test';
 
     protected $table      = 'COMMENT';
     protected $primaryKey = 'idx';
