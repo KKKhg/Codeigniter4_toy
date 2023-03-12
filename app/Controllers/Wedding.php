@@ -34,7 +34,7 @@ class Wedding extends BaseController {
         $offset = ($page - 1) * $rowPerPage;
 
         $builder = $this->commentModel->builder();
-        $comments = $builder->select('idx, author, comment')
+        $comments = $builder->select('idx, author, comment, created_at')
             ->where('deleted_at', null)
             ->orderBy('idx', 'desc')
             ->get($limit, $offset)->getResultObject();
