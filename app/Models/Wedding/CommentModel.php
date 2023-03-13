@@ -19,4 +19,6 @@ class CommentModel extends Model {
 
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
+    protected $useSoftDeletes = true;
+    protected $deletedField = 'deleted_at';
 }

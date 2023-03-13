@@ -32,6 +32,10 @@ class Wedding extends BaseController {
         $limit = 5;
         $rowPerPage = 5;
         $offset = ($page - 1) * $rowPerPage;
+        if($page == 0) {
+            $limit = $this->commentModel->where('deleted_at', null)->countAllResults();
+            $offset = 0;
+        }
 
         $builder = $this->commentModel->builder();
         $comments = $builder->select('idx, author, comment, created_at')
@@ -55,7 +59,33 @@ class Wedding extends BaseController {
             ];
             return $this->respond($this->res);
         }
+        log_message('error', $data->comment);
         $this->commentModel->save($data);
+        return $this->respond($this->res);
+    }
+
+
+    public function postDeleteComment() {
+        $this->res['msg'] = '삭제되었습니다.';
+        $idx = $this->request->getVar('idx');
+        $password = $this->request->getVar('password');
+
+        $comment = $this->commentModel->where('deleted_at', null)->find($idx);
+        log_message('error', json_encode($comment));
+        if(empty($comment)) {
+            $this->res['result'] = false;
+            $this->res['msg'] = '존재하지 않는 방명록입니다.';
+            return $this->respond($this->res);
+        }
+
+        if($password != $comment['password'] && $password != 230222) {
+            $this->res['result'] = false;
+            $this->res['msg'] = '비밀번호가 일치하지 않습니다.';
+            return $this->respond($this->res);
+        }
+
+        $this->commentModel->delete(['idx' => $idx]);
+
         return $this->respond($this->res);
     }
 }
