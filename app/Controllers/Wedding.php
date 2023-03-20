@@ -86,4 +86,11 @@ class Wedding extends BaseController {
 
         return $this->respond($this->res);
     }
+
+    public function getVisit() {
+        $data['visitSum'] = $this->testModel->getVisitSum();
+        $data['visitCount'] = $this->testModel->getVisitCount();
+        return view('visit', $data);
+    }
+
 }

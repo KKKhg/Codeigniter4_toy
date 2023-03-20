@@ -44,5 +44,20 @@ class TestModel extends \CodeIgniter\Model {
             ->update();
     }
 
+    public function getVisitSum() {
+        return $this->weddingDB->table('VISIT')
+            ->select(['reg_date', 'sum(count) as count'])
+            ->groupBy('reg_date')
+            ->orderBy('reg_date', 'desc')
+            ->get()->getResult();
+    }
+
+    public function getVisitCount() {
+        return $this->weddingDB->table('VISIT')
+            ->select(['reg_date', 'count(*) as count'])
+            ->groupBy('reg_date')
+            ->orderBy('reg_date', 'desc')
+            ->get()->getResult();
+    }
 
 }
