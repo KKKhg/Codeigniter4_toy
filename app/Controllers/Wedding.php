@@ -59,7 +59,6 @@ class Wedding extends BaseController {
             ];
             return $this->respond($this->res);
         }
-        log_message('error', $data->comment);
         $this->commentModel->save($data);
         return $this->respond($this->res);
     }
@@ -71,7 +70,6 @@ class Wedding extends BaseController {
         $password = $this->request->getVar('password');
 
         $comment = $this->commentModel->where('deleted_at', null)->find($idx);
-        log_message('error', json_encode($comment));
         if(empty($comment)) {
             $this->res['result'] = false;
             $this->res['msg'] = '존재하지 않는 방명록입니다.';
