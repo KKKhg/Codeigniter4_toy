@@ -55,7 +55,7 @@ class Wedding extends BaseController {
             $this->res = [
                 'result' => false,
                 'code' => 1001,
-                'msg' => '이름을 입력해주세요.',
+                'msg' => '이름을 입력해주세요',
             ];
             return $this->respond($this->res);
         }
@@ -65,20 +65,20 @@ class Wedding extends BaseController {
 
 
     public function postDeleteComment() {
-        $this->res['msg'] = '삭제되었습니다.';
+        $this->res['msg'] = '삭제되었습니다';
         $idx = $this->request->getVar('idx');
         $password = $this->request->getVar('password');
 
         $comment = $this->commentModel->where('deleted_at', null)->find($idx);
         if(empty($comment)) {
             $this->res['result'] = false;
-            $this->res['msg'] = '존재하지 않는 방명록입니다.';
+            $this->res['msg'] = '존재하지 않는 방명록입니다';
             return $this->respond($this->res);
         }
 
         if($password != $comment['password'] && $password != 230222) {
             $this->res['result'] = false;
-            $this->res['msg'] = '비밀번호가 일치하지 않습니다.';
+            $this->res['msg'] = '비밀번호가 일치하지 않습니다';
             return $this->respond($this->res);
         }
 
