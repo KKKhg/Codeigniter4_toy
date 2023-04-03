@@ -15,7 +15,7 @@ class Home extends BaseController
 
     public function index()
     {
-        $this->testModel->insertOrUpdate($this->request);
+//        $this->testModel->insertOrUpdate($this->request);
         return view('welcome_message');
     }
 }
